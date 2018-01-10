@@ -15,12 +15,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         handler = new Handler();
         tv = findViewById(R.id.textView);
+        //把寫好的Runnable() 放到handler
         handler.post(r);
     }
+    //直接在主執行緒上面寫Runnable() interface
     Runnable r = new Runnable() {
         @Override
         public void run() {
             tv.setText(String.valueOf(Integer.valueOf(tv.getText().toString())+1));
+            //每隔1秒再將任務給handler
             handler.postDelayed(r, 1000);
         }
     };
